@@ -425,7 +425,7 @@ class Accordion extends dhtmlXAccordion {
     loadFile(data, callBack) {
         this.loadStruct(data, callBack)
     }
-    
+
     /**
      * 子元素移到最上面
      * 
@@ -434,5 +434,162 @@ class Accordion extends dhtmlXAccordion {
      */
     moveOnTop(itemId) {
         this.chose(itemId).moveOnTop()
+    }
+
+    /**
+     * 展开此子元素
+     * 
+     * @param {any} itemId 
+     * @memberof Accordion
+     */
+    openItem(itemId) {
+        this.chose(itemId).open()
+    }
+
+    /**
+     * 开启加载状态，菊花转
+     * 
+     * @memberof Accordion
+     */
+    openLoading() {
+        this.progressOn()
+    }
+
+    /**
+     * 结束加载状态，关闭菊花转
+     * 
+     * @memberof Accordion
+     */
+    endLoading() {
+        this.progressOff()
+    }
+
+    /**
+     * 删除某个子元素
+     * 
+     * @param {any} itemId 
+     * @memberof Accordion
+     */
+    removeItem_(itemId) {
+        this.removeItem(itemId)
+    }
+
+    /**
+     * 给子元素设置icon
+     * 
+     * @param {any} itemId 
+     * @param {any} iconPath 
+     * @memberof Accordion
+     */
+    setIcon(itemId, iconPath) {
+        this.chose(itemId).setIcon(iconPath)
+    }
+
+    /**
+     * 设置icon的根目录
+     * 
+     * @param {any} path 
+     * @memberof Accordion
+     */
+    setIconsPath_(path) {
+        this.setIconsPath(path)
+    }
+
+    /**
+     * 设置icon的字体类型
+     * 
+     * @param {any} fontName 
+     * @memberof Accordion
+     */
+    setIconFont(fontName) {
+        this.setIconset(fontName)
+    }
+
+    /**
+     * 设置子元素的高度
+     * 
+     * @param {any} itemId 
+     * @param {any} height 
+     * @memberof Accordion
+     */
+    setItemHeight(itemId, height) {
+        this.chose(itemId).setHeight(height)
+    }
+
+    /**
+     * 设置子元素间的垂直偏移量
+     * 
+     * @param {any} dy 
+     * @memberof Accordion
+     */
+    setItemDy(dy) {
+        this.setOffset(dy)
+    }
+
+    /**
+     * 设置margin
+     * 
+     * @param {any} conf 
+     * @memberof Accordion
+     */
+    setMargin(conf) {
+        this.setOffsets(conf)
+    }
+
+    /**
+     * 当外部容器大小变化后调用此函数可自适应
+     * 
+     * @memberof Accordion
+     */
+    autoLayout() {
+        this.setSizes()
+    }
+
+    /**
+     * 设置主题
+     * 
+     * @param {any} skin 
+     * @memberof Accordion
+     */
+    setTheme(skin) {
+        this.setSkin(skin)
+    }
+
+    /**
+     * 设置子元素的文字
+     * 
+     * @param {any} itemId 
+     * @param {any} text 
+     * @memberof Accordion
+     */
+    setText(itemId, text) {
+        this.chose(itemId).setText(text)
+    }
+
+    /**
+     * 显示顶部的dhtmlxMenu 对象
+     * 
+     * @memberof Accordion
+     */
+    showMenu_() {
+        this.showMenu()
+    }
+
+    /**
+     * 显示顶部dhtmlxRibbon 对象
+     * 
+     * @memberof Accordion
+     */
+    showRibbon_() {
+        this.showRibbon()
+    }
+    
+    /**
+     * 显示底部状态栏
+     * 
+     * @memberof Accordion
+     */
+    showStatusBar_() {
+        this.showStatusBar()
     }
 }

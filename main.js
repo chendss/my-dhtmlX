@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
     acc.addItem_('a2', 'frist', false, null, null)
     acc.addItem_('a3', 'frist', false, null, null)
     document.querySelector('#b1').addEventListener('click', () => {
-        console.log(acc.isOpen('a1'))
+        let parent = document.querySelector('#show')
+        parent.classList.add('big')
+        // acc.setSizes()
     })
 })
