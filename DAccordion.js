@@ -124,4 +124,40 @@ class Accordion extends dhtmlXAccordion {
         }
         return item
     }
+
+    /**
+     * 
+     *清除元素的icon 
+     * @param {any} itemId 子元素id
+     * @memberof Accordion
+     */
+    clear_icon(itemId) {
+        let item = this.chose(itemId)
+        if (item !== null) {
+            item.clearIcon()
+        }
+    }
+
+    /**
+     * 把子元素合上
+     * 
+     * @param {any} itemId 子元素id
+     * @memberof Accordion
+     */
+    close_item(itemId) {
+        let item = this.chose(itemId)
+        if (item !== null) {
+            item.close()
+        }
+    }
+
+    /**
+     * 卸载事件
+     * 
+     * @param {any} eventId 事件id
+     * @memberof Accordion
+     */
+    unEvent(eventId) {
+        this.detachEvent(eventId)
+    }
 }
