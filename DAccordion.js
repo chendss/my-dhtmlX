@@ -1,11 +1,49 @@
-// 一个手风琴组件,只支持垂直布局
+/**
+ * 一个手风琴组件,只支持垂直布局
+ * 
+ * @class Accordion
+ * @extends {dhtmlXAccordion}
+ */
 class Accordion extends dhtmlXAccordion {
 
     constructor(props) {
         super(props)
         this.config = {
-            hideSet: new Set([])
+            hideSet: new Set([]),
+            eventTags: {
+                'onItemClick': 'onActive',
+                'onItemClickBeFor': 'onBeforeActive',
+                'onBeforeDrag': 'onBeforeDrag',
+                'onContentLoaded': 'onContentLoaded',
+                '回到文档流': 'onDock',
+                '脱离文档流': 'onUnDock',
+                'onDrop': 'onDrop',
+                'onDataLoad': 'onXLE',
+                'onXLS': 'onXLS',
+            }
         }
+    }
+
+    /**
+     * 返回所有事件的字典
+     * 
+     * @returns 
+     * @memberof Accordion
+     */
+    eventDict() {
+        let result = this.config.eventTags
+        return result
+    }
+    
+    /**
+     * 注册监听事件
+     * 
+     * @param {any} eventName 
+     * @param {any} callBack 
+     * @memberof Accordion
+     */
+    addEvent(eventName, callBack) {
+        this.attachEvent(eventName, callBack)
     }
 
     /**
@@ -583,7 +621,7 @@ class Accordion extends dhtmlXAccordion {
     showRibbon_() {
         this.showRibbon()
     }
-    
+
     /**
      * 显示底部状态栏
      * 
@@ -591,5 +629,23 @@ class Accordion extends dhtmlXAccordion {
      */
     showStatusBar_() {
         this.showStatusBar()
+    }
+
+    /**
+     * 显示底部dhtmlxToolbar 对象
+     * 
+     * @memberof Accordion
+     */
+    showToolbar_() {
+        this.showToolbar()
+    }
+
+    /**
+     * 让自己消失
+     * 
+     * @memberof Accordion
+     */
+    delSelf() {
+        this.unload()
     }
 }
