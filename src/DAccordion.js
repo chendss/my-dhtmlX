@@ -8,6 +8,7 @@ class Accordion extends dhtmlXAccordion {
 
     constructor(props) {
         super(props)
+        console.log(props)
         this.config = {
             hideSet: new Set([]),
             eventTags: {
@@ -34,7 +35,7 @@ class Accordion extends dhtmlXAccordion {
         let result = this.config.eventTags
         return result
     }
-    
+
     /**
      * 注册监听事件
      * 
@@ -69,8 +70,8 @@ class Accordion extends dhtmlXAccordion {
      * @memberof Accordion
      */
     addEvent(name, callBack) {
-        let eventId = this.attachEvent(name, callBack)
-        return eventI
+        let result = this.attachEvent(name, callBack)
+        return result
     }
 
     /**
@@ -647,5 +648,30 @@ class Accordion extends dhtmlXAccordion {
      */
     delSelf() {
         this.unload()
+    }
+
+    /**
+     * 子元素加入文档流
+     * 
+     * @param {any} itemId 
+     * @memberof Accordion
+     */
+    dock_(itemId) {
+        this.chose(itemId).dock()
+    }
+
+    /**
+     * 子元素脱离文档流
+     * 
+     * @param {any} itemId 
+     * @param {any} sizes 
+     * @memberof Accordion
+     */
+    unDock_(itemId, sizes) {
+        this.chose(itemId).undock(...sizes)
+    }
+
+    linkWindow(){
+        this.dhxWins.attachViewportTo()
     }
 }

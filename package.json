@@ -1,0 +1,25 @@
+{
+  "name": "my_dhtmlx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "webpack-cli": "^2.1.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.8.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chendss/my-dhtmlX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chendss/my-dhtmlX/issues"
+  },
+  "homepage": "https://github.com/chendss/my-dhtmlX#readme"
+}
