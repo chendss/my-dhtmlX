@@ -9,8 +9,9 @@ class DDocument {
     }
 
     injectionElement(id, element) {
-        this.dict[id] = element 
+        this.dict[id] = element
     }
 }
 
-export const D$ = new DDocument()
+const D$ = new DDocument()
+module.exports = D$

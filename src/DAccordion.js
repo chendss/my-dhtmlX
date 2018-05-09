@@ -1,3 +1,5 @@
+const D$ = require('./DDocument')
+
 /**
  * 一个手风琴组件,只支持垂直布局
  * 
@@ -8,7 +10,6 @@ class Accordion extends dhtmlXAccordion {
 
     constructor(props) {
         super(props)
-        console.log(props)
         this.config = {
             hideSet: new Set([]),
             eventTags: {
@@ -23,6 +24,7 @@ class Accordion extends dhtmlXAccordion {
                 'onXLS': 'onXLS',
             }
         }
+        D$.injectionElement(props, this)
     }
 
     /**
@@ -671,7 +673,9 @@ class Accordion extends dhtmlXAccordion {
         this.chose(itemId).undock(...sizes)
     }
 
-    linkWindow(){
+    linkWindow() {
         this.dhxWins.attachViewportTo()
     }
 }
+
+module.exports = Accordion

@@ -1,4 +1,5 @@
-
+const D$ = require('./DDocument')
+const Accordion = require('./DAccordion')
 
 var elementEventBinding = function (element) {
     let eventTags = acc.eventDict()
@@ -6,12 +7,14 @@ var elementEventBinding = function (element) {
         console.log(arguments)
         return true
     })
+    
 }
 
-var buttonEventBinding = function (acc) {
+var buttonEventBinding = function () {
     var b = document.querySelector('#b1')
     b.addEventListener('click', () => {
-        acc.unDock_('a1', [550, 20, 400, 300])
+        let acc = D$.querySelector('show')
+        acc.addItem_('a4', 'frist', false, null, null)
     })
 }
 
@@ -26,7 +29,9 @@ var elementInit = function () {
 var main_ = function () {
     window.addEventListener('load', () => {
         var acc = elementInit()
-        // buttonEventBinding(acc)
+        buttonEventBinding()
     })
 }
+
+main_()
 
