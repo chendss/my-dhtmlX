@@ -1,35 +1,16 @@
 const D$ = require('./DDocument')
 const Accordion = require('./DAccordion')
-
-var elementEventBinding = function (element) {
-    let eventTags = acc.eventDict()
-    acc.addEvent(eventTags.脱离文档流, function () {
-        console.log(arguments)
-        return true
-    })
-    
-}
-
-var buttonEventBinding = function () {
-    var b = document.querySelector('#b1')
-    b.addEventListener('click', () => {
-        let acc = D$.querySelector('show')
-        acc.addItem_('a4', 'frist', false, null, null)
-    })
-}
-
-var elementInit = function () {
-    var acc = new Accordion('show')
-    acc.addItem_('a1', 'frist', false, null, null)
-    acc.addItem_('a2', 'frist', false, null, null)
-    acc.addItem_('a3', 'frist', false, null, null)
-    return acc
-}
+const Calendar = require('./DCalendar')
 
 var main_ = function () {
     window.addEventListener('load', () => {
-        var acc = elementInit()
-        buttonEventBinding()
+        var acc = new Accordion('#show')
+        acc.addItem_('a1', 'test', false, null, null)
+        acc.addItem_('a2', 'test', false, null, null)
+        acc.addItem_('a3', 'test', false, null, null)
+        document.querySelector('#b1').addEventListener('click', () => {
+            D$.querySelector('#show')
+        })
     })
 }
 

@@ -1,4 +1,5 @@
 const D$ = require('./DDocument')
+const { analysisProps } = require('./share')
 
 /**
  * 一个手风琴组件,只支持垂直布局
@@ -7,9 +8,9 @@ const D$ = require('./DDocument')
  * @extends {dhtmlXAccordion}
  */
 class Accordion extends dhtmlXAccordion {
-
-    constructor(props) {
-        super(props)
+    constructor(prop) {
+        prop = prop.slice(1, prop.length)
+        super(prop)
         this.config = {
             hideSet: new Set([]),
             eventTags: {
@@ -24,7 +25,7 @@ class Accordion extends dhtmlXAccordion {
                 'onXLS': 'onXLS',
             }
         }
-        D$.injectionElement(props, this)
+        D$.injectionElement(`#${prop}`, this)
     }
 
     /**
@@ -45,7 +46,7 @@ class Accordion extends dhtmlXAccordion {
      * @param {any} callBack 
      * @memberof Accordion
      */
-    addEvent(eventName, callBack) {
+    monitorEvent(eventName, callBack) {
         this.attachEvent(eventName, callBack)
     }
 
@@ -71,7 +72,7 @@ class Accordion extends dhtmlXAccordion {
      * @returns 返回一个内部的事件id 可用于detachEvent(eventId) 
      * @memberof Accordion
      */
-    addEvent(name, callBack) {
+    monitorEvent(name, callBack) {
         let result = this.attachEvent(name, callBack)
         return result
     }
