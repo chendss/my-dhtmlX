@@ -1,13 +1,15 @@
 const D$ = require('./DDocument')
-const {analysisProps} = require('./share')
+const { analysisProps } = require('./share')
 
 class Calendar extends dhtmlXCalendarObject {
     constructor(props) {
-        analysisProps(props, (backData) => { super(backData) })
         this.config = {
 
         }
-        D$.injectionElement(props, this)
+        analysisProps(props, (parentIds) => {
+            super(parentIds)
+            D$.injectionElement(parent, this)
+        })
     }
 
 
