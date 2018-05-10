@@ -1,6 +1,6 @@
 const D$ = require('./DDocument')
 const { analysisParameterToId } = require('./share')
-const { isObject, isArray } = require("util")
+const { isObject } = require("./share")
 
 class Accordion extends dhtmlXAccordion {
 

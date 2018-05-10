@@ -1,5 +1,10 @@
-const { isObject, isArray } = require("util")
+const { isArray } = require("util")
 
+/**
+ * 返回随机时间数
+ * 
+ * @returns 
+ */
 const timeStamp = function () {
     let timestamp = new Date().getTime()
     let r = parseInt(Math.random() * 1000) + 1
@@ -41,18 +46,64 @@ const variationParentIds = function (parentIds) {
 }
 
 /**
+ * 判断参数是否是一个含有对象的数组
+ * 
+ * @param {any} params 
+ * @returns 
+ */
+export const isObjectArray = function (params) {
+    let result = false
+    if (isArray(params)) {
+        for (let i = 0; i < params.length; i++) {
+            let param = params[i]
+            if (isObject(param)) {
+                result = true
+                break
+            }
+        }
+    }
+    return result
+}
+
+/**
+ * 判断是否是一个对象
+ * 
+ * @param {any} param 
+ * @returns 
+ */
+export const isObject = function (param) {
+    let result
+    if (param instanceof Object) {
+        if (!param.hasOwnProperty('length')) {
+            result = true
+        } else {
+            result = false
+        }
+    } else {
+        result = false
+    }
+    return result
+}
+
+/**
  * 解析参数,解析成一个id数组/id返回
  * 
  * @param {any} props 
  */
 export const analysisParameterToId = function (props) {
-    let parentIds = [], result
-    props = (isArray(props)) ? props : [props]
-    props.forEach(identification => {
-        let domObj = document.querySelector(identification)
-        let id = domId(domObj)
-        parentIds.push(domObj.id)
-    })
-    result = variationParentIds(parentIds)
-    return result
+    if (isObject(props)) {
+        return props
+    } else if (isArray(props) && isObjectArray(props)) {
+        return props
+    } else {
+        let parentIds = [], result
+        props = (props instanceof Array) ? props : [props]
+        props.forEach(identification => {
+            let domObj = document.querySelector(identification)
+            let id = domId(domObj)
+            parentIds.push(domObj.id)
+        })
+        result = variationParentIds(parentIds)
+        return result
+    }
 }

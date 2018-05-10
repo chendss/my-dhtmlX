@@ -1,6 +1,7 @@
 const D$ = require('./DDocument')
 const { analysisParameterToId } = require('./share')
-const { isObject, isArray } = require("util")
+const { isObject, isObjectArray } = require("./share")
+const { isArray } = require("util")
 
 class Calendar extends dhtmlXCalendarObject {
     /**
@@ -9,13 +10,13 @@ class Calendar extends dhtmlXCalendarObject {
      * @memberof Calendar
      */
     constructor(props) {
-        if (isObject(props)) {
+        if (isObject(props) || isObjectArray(props)) {
             super(props)
         } else {
             let parentIds = analysisParameterToId(props)
             super(parentIds)
+            D$.injectionElement(props, this)
         }
-        D$.injectionElement(props, this)
         this.config = {
 
         }
