@@ -191,7 +191,7 @@ class Calendar extends dhtmlXCalendarObject {
         let result = this.getPopup()
         return
     }
-    
+
     /**
      * 获得指定日期是第几周
      * 
@@ -201,6 +201,71 @@ class Calendar extends dhtmlXCalendarObject {
      */
     getWhichWeek(date) {
         let result = this.getWeekNumber(date)
+        return result
+    }
+
+    /**
+     * 隐藏自己
+     * 
+     * @memberof Calendar
+     */
+    hide_() {
+        this.hide()
+    }
+
+    /**
+     * 隐藏底部时间面板
+     * 
+     * @memberof Calendar
+     */
+    hideBottomTime() {
+        this.hideTime()
+    }
+
+    /**
+     * 显示右下角的 今天 清除 按钮
+     * 
+     * @memberof Calendar
+     */
+    showTodayClear() {
+        this.showToday()
+    }
+
+    /**
+     * 隐藏右下角 今天 清除 按钮
+     * 
+     * @memberof Calendar
+     */
+    hideTodayClear() {
+        this.hideToday()
+    }
+
+    /*
+     * 左侧显示周数栏
+     * 
+     * @memberof Calendar
+     */
+    showWeekCell() {
+        this.showWeekNumbers()
+    }
+
+    /**
+     * 隐藏左侧周数栏
+     * 
+     * @memberof Calendar
+     */
+    hideWeekCell() {
+        this.hideWeekNumbers()
+    }
+
+    /**
+     * 判断组件是否处于显示状态
+     * 
+     * @returns 
+     * @memberof Calendar
+     */
+    isShow() {
+        let result = this.isVisible()
         return result
     }
 }
