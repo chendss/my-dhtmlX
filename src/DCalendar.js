@@ -157,6 +157,52 @@ class Calendar extends dhtmlXCalendarObject {
     enableOneDayEachCycle(mode) {
         this.enableDays(mode)
     }
+
+    /**
+     * 返回某个日期的坐标和宽高
+     * 
+     * @param {string|Date} date 
+     * @returns 日期的坐标和宽高
+     * @memberof Calendar
+     */
+    dateCoordinate(date) {
+        let result = this.getCellDimension(date)
+        return result
+    }
+
+    /**
+     * 获得当前选中的时间
+     * 
+     * @param {boolean} isFormatted 是否使用简易时间，默认标准时间
+     * @returns 当前选中时间
+     * @memberof Calendar
+     */
+    date(isFormatted) {
+        let result = this.getDate(isFormatted)
+        return result
+    }
+
+    /**
+     * 获得最近的触发onPopupShow事件的popup对象
+     * 
+     * @memberof Calendar
+     */
+    getRemindingPopup() {
+        let result = this.getPopup()
+        return
+    }
+    
+    /**
+     * 获得指定日期是第几周
+     * 
+     * @param {string|Date} date 
+     * @returns 返回第几周Number
+     * @memberof Calendar
+     */
+    getWhichWeek(date) {
+        let result = this.getWeekNumber(date)
+        return result
+    }
 }
 
 module.exports = Calendar
