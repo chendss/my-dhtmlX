@@ -22,31 +22,35 @@ const domId = function (domObj) {
     }
     return id
 }
+/**
+ * 如果参数是长度为一的数组，则返回第一项
+ * 如果参数的长度不为1，则返回全部
+ * @param {any} parentIds 
+ * @returns 
+ */
+const variationParentIds = function (parentIds) {
+    let result
+    if (parentIds.length === 1) {
+        result = parentIds[0]
+    } else {
+        result = parentIds
+    }
+    return result
+}
 
 /**
- * 解析props,解析完成后回调
+ * 解析参数,解析成一个id数组/id返回
  * 
  * @param {any} props 
- * @param {any} callBack 
  */
-export const analysisProps = function (props, callBack) {
-    let parentIds = []
-    props = props instanceof Array ? props : [props]
-    console.log(props)
+export const analysisParameterToId = function (props) {
+    let parentIds = [], result
+    props = (props instanceof Array) ? props : [props]
     props.forEach(identification => {
         let domObj = document.querySelector(identification)
         let id = domId(domObj)
         parentIds.push(domObj.id)
     })
-    callBack(parentIds)
-}
-
-
-export const structuralType = function (prop) {
-    let result = ''
-    let typeIdent = prop.slice(0, 1)
-    if (typeIdent === '.') {
-        result = ''
-        // 根据传入的参数获得dom对象，如果有id则使用id，如果没有则随机生成一个，并且不能重复
-    }
+    result = variationParentIds(parentIds)
+    return result
 }

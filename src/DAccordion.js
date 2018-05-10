@@ -1,5 +1,5 @@
 const D$ = require('./DDocument')
-const { analysisProps } = require('./share')
+const { analysisParameterToId } = require('./share')
 
 /**
  * 一个手风琴组件,只支持垂直布局
@@ -9,8 +9,8 @@ const { analysisProps } = require('./share')
  */
 class Accordion extends dhtmlXAccordion {
     constructor(prop) {
-        prop = prop.slice(1, prop.length)
-        super(prop)
+        let parent = analysisParameterToId(prop)
+        super(parent)
         this.config = {
             hideSet: new Set([]),
             eventTags: {
@@ -25,7 +25,7 @@ class Accordion extends dhtmlXAccordion {
                 'onXLS': 'onXLS',
             }
         }
-        D$.injectionElement(`#${prop}`, this)
+        D$.injectionElement(prop, this)
     }
 
     /**
