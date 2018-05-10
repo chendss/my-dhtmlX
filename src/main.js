@@ -4,10 +4,10 @@ const Calendar = require('./DCalendar')
 
 var main_ = function () {
     window.addEventListener('load', () => {
-        var calendar = new Calendar(['#i1', '#i2'])
+        var calendar = new Calendar(['#i1', '#i2','#hhh'])
+        calendar.enableIframe(true)
         document.querySelector('#b1').addEventListener('click', () => {
-            let test = D$.querySelector('.fuck')
-            calendar.injectionToDom('#i3')
+            calendar.enableIframe(false)
         })
     })
 }

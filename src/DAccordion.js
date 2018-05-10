@@ -1,31 +1,43 @@
 const D$ = require('./DDocument')
 const { analysisParameterToId } = require('./share')
+const { isObject, isArray } = require("util")
 
-/**
- * 一个手风琴组件,只支持垂直布局
- * 
- * @class Accordion
- * @extends {dhtmlXAccordion}
- */
 class Accordion extends dhtmlXAccordion {
+
+    /**
+     * 一个手风琴组件，只支持垂直布局
+     * @param {string} prop 
+     * @memberof Accordion
+     */
     constructor(prop) {
-        let parent = analysisParameterToId(prop)
-        super(parent)
+        if (isObject(prop)) {
+            super(prop)
+        } else {
+            let parent = analysisParameterToId(prop)
+            super(parent)
+            D$.injectionElement(prop, this)
+        }
         this.config = {
             hideSet: new Set([]),
-            eventTags: {
-                'onItemClick': 'onActive',
-                'onItemClickBeFor': 'onBeforeActive',
-                'onBeforeDrag': 'onBeforeDrag',
-                'onContentLoaded': 'onContentLoaded',
-                '回到文档流': 'onDock',
-                '脱离文档流': 'onUnDock',
-                'onDrop': 'onDrop',
-                'onDataLoad': 'onXLE',
-                'onXLS': 'onXLS',
-            }
+            eventTags: this.enumConfig()['eventTags'],
         }
-        D$.injectionElement(prop, this)
+    }
+
+    enumConfig() {
+        let result = {}
+        let eventTags = {
+            'onItemClick': 'onActive',
+            'onItemClickBeFor': 'onBeforeActive',
+            'onBeforeDrag': 'onBeforeDrag',
+            'onContentLoaded': 'onContentLoaded',
+            '回到文档流': 'onDock',
+            '脱离文档流': 'onUnDock',
+            'onDrop': 'onDrop',
+            'onDataLoad': 'onXLE',
+            'onXLS': 'onXLS',
+        }
+        result['eventTags'] = eventTags
+        return result
     }
 
     /**
@@ -42,22 +54,22 @@ class Accordion extends dhtmlXAccordion {
     /**
      * 注册监听事件
      * 
-     * @param {any} eventName 
-     * @param {any} callBack 
+     * @param {string} eventName 
+     * @param {Function} callBack 
      * @memberof Accordion
      */
-    monitorEvent(eventName, callBack) {
+    addEventListener(eventName, callBack) {
         this.attachEvent(eventName, callBack)
     }
 
     /**
      * 添加一个子元素
      * 
-     * @param {any} id 设定子元素的id
-     * @param {any} text 设定子元素显示的文本
-     * @param {any} isOpen 是否处于展开状态
-     * @param {any} height 子元素的高度
-     * @param {any} icon 子元素的icon
+     * @param {string} id 设定子元素的id
+     * @param {string} text 设定子元素显示的文本
+     * @param {boolean} isOpen 是否处于展开状态
+     * @param {Number} height 子元素的高度
+     * @param {string} icon 子元素的icon
      * @memberof Accordion
      */
     addItem_(id, text, isOpen, height, icon) {
@@ -72,7 +84,7 @@ class Accordion extends dhtmlXAccordion {
      * @returns 返回一个内部的事件id 可用于detachEvent(eventId) 
      * @memberof Accordion
      */
-    monitorEvent(name, callBack) {
+    addEventListener(name, callBack) {
         let result = this.attachEvent(name, callBack)
         return result
     }
@@ -191,7 +203,7 @@ class Accordion extends dhtmlXAccordion {
      * @param {any} itemId 子元素id
      * @memberof Accordion
      */
-    close_item(itemId) {
+    closeItem_(itemId) {
         let item = this.chose(itemId)
         if (item !== null) {
             item.close()
@@ -201,7 +213,7 @@ class Accordion extends dhtmlXAccordion {
     /**
      * 卸载事件
      * 
-     * @param {any} eventId 事件id
+     * @param {Number} eventId 事件id
      * @memberof Accordion
      */
     delEvent(eventId) {

@@ -1,3 +1,5 @@
+const { isObject, isArray } = require("util")
+
 const timeStamp = function () {
     let timestamp = new Date().getTime()
     let r = parseInt(Math.random() * 1000) + 1
@@ -45,7 +47,7 @@ const variationParentIds = function (parentIds) {
  */
 export const analysisParameterToId = function (props) {
     let parentIds = [], result
-    props = (props instanceof Array) ? props : [props]
+    props = (isArray(props)) ? props : [props]
     props.forEach(identification => {
         let domObj = document.querySelector(identification)
         let id = domId(domObj)

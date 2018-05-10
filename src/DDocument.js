@@ -8,7 +8,7 @@ class DDocument {
     /**
      * 查找dhtmlx元素
      * 
-     * @param {any} id 
+     * @param {string} identification
      * @returns 
      * @memberof DDocument
      */
@@ -30,6 +30,7 @@ class DDocument {
         let parentIds = analysisParameterToId(identification)
         parentIds = (parentIds instanceof Array) ? parentIds : [parentIds]
         parentIds.forEach(id => {
+            id = id + ''
             this.dict[id] = element
         })
     }
