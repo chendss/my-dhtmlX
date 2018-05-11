@@ -23,6 +23,17 @@ class Calendar extends dhtmlXCalendarObject {
     }
 
     /**
+     * 修改所有的日历组件语言
+     * 
+     * @static
+     * @param {string} lang 
+     * @memberof Calendar
+     */
+    static allLangChange(lang) {
+        dhtmlXCalendarObject.prototype.lang = "de"
+    }
+
+    /**
      * 监听一个事件
      * 
      * @param {any} eventName 事件名
@@ -268,6 +279,60 @@ class Calendar extends dhtmlXCalendarObject {
         let result = this.isVisible()
         return result
     }
+
+    /**
+     * 设置语言
+     * 
+     * @param {any} lang 语言索引
+     * @memberof Calendar
+     */
+    setLanguage(lang) {
+        this.loadUserLanguage(lang)
+    }
+
+    /**
+     * 设置当前日期时间
+     * 
+     * @param {string|Date} date 
+     * @memberof Calendar
+     */
+    setDate_(date) {
+        this.setDate(date)
+    }
+
+    /**
+     * 设置日期格式
+     * 
+     * @param {any} format 
+     * @memberof Calendar
+     */
+    setDateFormat_(format) {
+        this.setDateFormat(format)
+    }
+
+    /**
+     * 根据格式设置日期
+     * 
+     * @param {string} format 
+     * @param {string} date 
+     * @memberof Calendar
+     */
+    setFormatedDate_(format, date) {
+        this.setFormatedDate(format, date)
+    }
+
+    /**
+     * 设定特殊日子
+     * 
+     * @param {string|Date|Array} date 
+     * @memberof Calendar
+     */
+    setSpecialDate(date) {
+        this.setHolidays(data)
+    }
+
+    
+
 }
 
 module.exports = Calendar
